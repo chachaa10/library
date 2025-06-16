@@ -1,4 +1,4 @@
-import { loadFromStorage, saveToStorage } from './storage';
+import { loadFromStorage, saveToStorage } from './storage.js';
 export default class Library {
   constructor() {
     this.books = loadFromStorage('books') || [];
