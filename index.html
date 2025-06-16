@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="src/reset.css" />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="src/main.js" type="module" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <h1>library</h1>
+      </div>
+    </header>
+    <main class="main container">
+      <button class="add-book-btn" id="openModal">+ Add book</button>
+      <ul class="books-grid" id="booksGrid"></ul>
+    </main>
+
+    <dialog class="modal" id="addBookModal">
+      <form class="add-book-form" id="addBookForm">
+        <h3>Add new book</h3>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            class="input"
+            type="text"
+            id="title"
+            placeholder="Title"
+            name="title"
+            minlength="3"
+            maxlength="100"
+            autofocus />
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input
+            class="input"
+            name="author"
+            type="text"
+            id="author"
+            placeholder="Author"
+            minlength="2"
+            maxlength="100" />
+        </div>
+        <div class="form-group">
+          <label for="pages">Pages</label>
+          <input class="input" type="number" id="pages" placeholder="Pages" max="10000" />
+        </div>
+        <div class="form-group">
+          <label for="is-read">Have you read it?</label>
+          <input class="checkbox" type="checkbox" id="isRead" />
+        </div>
+        <p class="error-msg" id="errorMsg"></p>
+        <div class="form-buttons">
+          <button class="" id="closeModal">Cancel</button>
+          <button class="" type="submit">Submit</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- <footer class="footer">
+      <p>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        Chakiiroo
+      </p>
+      <a href="https://github.com/Chakiiroo" target="_blank">
+        <img class="github-logo" src="github-mark.svg" />
+      </a>
+    </footer> -->
+  </body>
+</html>
