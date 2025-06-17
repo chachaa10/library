@@ -1,0 +1,317 @@
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: var(--surface-2);
+  padding-bottom: var(--size-2);
+  font-family: var(--font-rounded-sans);
+}
+
+header {
+  box-shadow: var(--shadow-2);
+  background-color: var(--surface-1);
+  padding: var(--size-3);
+
+  & h1 {
+    padding: var(--size-3);
+    font-weight: var(--font-weight-9);
+    font-size: var(--font-size-6);
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-5);
+  padding: var(--size-3);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  width: min(100% - 2rem, 1200px);
+
+  &.main-content {
+    gap: var(--size-2);
+  }
+
+  &.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--size-3);
+  }
+}
+
+.add-book-btn {
+  transition: all 0.15s ease-in-out;
+  margin-inline: auto;
+  border-radius: var(--size-2);
+  background-color: var(--surface-2);
+  padding: var(--size-2) var(--size-3);
+  font-weight: var(--font-weight-9);
+  font-size: var(--font-size-4);
+
+  &:hover {
+    background-color: var(--surface-1);
+  }
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.books-grid {
+  display: grid;
+  gap: var(--size-4);
+  padding: var(--size-3);
+
+  @media screen and (min-width: 520px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (min-width: 48rem) {
+  }
+
+  @media screen and (min-width: 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 80rem) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.book-card {
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-3);
+  border-radius: var(--size-px-2);
+  background-color: var(--surface-1);
+  padding: var(--size-3);
+  width: 100%;
+
+  & * {
+    font-weight: var(--font-weight-5);
+    text-align: center;
+  }
+
+  & .book-title {
+    font-weight: var(--font-weight-9);
+    font-size: var(--font-size-fluid-2);
+  }
+
+  & .book-author {
+    font-weight: var(--font-weight-5);
+    font-size: var(--font-size-4);
+  }
+}
+
+.toggleRead,
+.remove-book-btn {
+  transition: all 0.15s ease;
+  border-radius: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  width: 100%;
+  font-size: var(--font-size-4);
+}
+
+.read {
+  background-color: var(--green-3);
+
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: var(--green-6);
+  }
+
+  &:hover {
+    background-color: var(--green-4);
+
+    @media screen and (prefers-color-scheme: dark) {
+      background-color: var(--green-8);
+    }
+  }
+
+  &:active {
+    background-color: var(--green-6);
+
+    @media screen and (prefers-color-scheme: dark) {
+      background-color: var(--green-10);
+    }
+  }
+}
+
+.not-read {
+  background-color: var(--red-3);
+
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: var(--red-6);
+  }
+
+  &:hover {
+    background-color: var(--red-4);
+
+    @media screen and (prefers-color-scheme: dark) {
+      background-color: var(--red-8);
+    }
+  }
+
+  &:active {
+    background-color: var(--red-6);
+
+    @media screen and (prefers-color-scheme: dark) {
+      background-color: var(--red-10);
+    }
+  }
+}
+
+.remove-book-btn:hover {
+  background-color: var(--surface-3);
+
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: var(--surface-3);
+  }
+}
+.remove-book-btn:active {
+  background-color: var(--surface-4);
+
+  @media screen and (prefers-color-scheme: dark) {
+    background-color: var(--surface-2);
+  }
+}
+
+/* Closed state of the dialog   */
+dialog {
+  opacity: 0;
+  margin-inline: auto;
+  width: min(100% - 2rem, 40ch);
+}
+dialog,
+dialog::backdrop,
+dialog:open,
+dialog:open::backdrop {
+  transition: all 0.3s ease-in-out allow-discrete;
+}
+
+/* Open state of the dialog   */
+dialog:open {
+  opacity: 1;
+}
+
+/* Before open state  */
+/* Needs to be after the previous dialog:open rule to take effect,
+    as the specificity is the same */
+@starting-style {
+  dialog:open {
+    opacity: 0;
+  }
+}
+
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+}
+
+dialog:open::backdrop {
+  background-color: rgb(0 0 0 / 80%);
+}
+
+@starting-style {
+  dialog:open::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+  }
+}
+
+.add-book-form {
+  display: grid;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  text-align: center;
+
+  & h3 {
+    /* font-size: var(--font-size-6); */
+    font-weight: var(--font-weight-9);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+
+  & input {
+    padding: var(--size-2) var(--size-3);
+  }
+
+  &.checkbox-group {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--size-3);
+    font-size: var(--font-size-3);
+  }
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-3);
+
+  & button {
+    border-radius: var(--size-px-2);
+    padding: var(--size-2) var(--size-3);
+    font-weight: var(--font-weight-6);
+
+    &.close-modal {
+      background-color: var(--red-3);
+      @media screen and (prefers-color-scheme: dark) {
+        background-color: var(--red-6);
+      }
+
+      &:hover {
+        background-color: var(--red-4);
+        @media screen and (prefers-color-scheme: dark) {
+          background-color: var(--red-8);
+        }
+      }
+
+      &:active {
+        background-color: var(--red-5);
+        @media screen and (prefers-color-scheme: dark) {
+          background-color: var(--red-7);
+        }
+      }
+    }
+
+    &.submit-form {
+      background-color: var(--blue-3);
+      @media screen and (prefers-color-scheme: dark) {
+        background-color: var(--blue-6);
+      }
+
+      &:hover {
+        background-color: var(--blue-4);
+        @media screen and (prefers-color-scheme: dark) {
+          background-color: var(--blue-8);
+        }
+      }
+
+      &:active {
+        background-color: var(--blue-5);
+        @media screen and (prefers-color-scheme: dark) {
+          background-color: var(--blue-7);
+        }
+      }
+    }
+  }
+}
+
+.error-msg {
+  border-radius: var(--size-px-2);
+  width: 100%;
+  color: var(--red-6);
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-2);
+  text-transform: uppercase;
+}

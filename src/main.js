@@ -57,25 +57,29 @@ function displayBooks() {
   books.forEach((book) => {
     const bookCard = document.createElement('li');
     bookCard.classList.add('book-card');
+
     bookCard.innerHTML = `
       <h2 class="book-title">${book.title}</h2>
-      <p class="book-author">by ${book.author}</p>
-      <p class="book-pages">${book.pages === 1 ? `${book.pages} page` : `${book.pages} pages`}</p>
-      <input type="checkbox" ${book.isRead ? 'checked' : ''} class="checkbox" data-bookId="${book.id}">
+      <p class="book-author">${book.author}</p>
+      <p class="book-pages">${book.pages === '1' ? `${book.pages} page` : `${book.pages} pages`}</p>
+
+      <button class="toggleRead ${book.isRead ? 'read' : 'not-read'}" data-bookId="${book.id}">
+      ${book.isRead ? 'Read' : 'Not read'}
+      </button>
       <button class="remove-book-btn" data-bookId="${book.id}">Remove</button>
     `;
     booksGrid.appendChild(bookCard);
+
+    const toggleRead = bookCard.querySelector('.toggleRead');
+    toggleRead.addEventListener('click', (event) => {
+      const bookId = event.target.getAttribute('data-bookId');
+      handleToggleRead(bookId);
+    });
 
     const removeBookButton = bookCard.querySelector('.remove-book-btn');
     removeBookButton.addEventListener('click', (event) => {
       const bookId = event.target.getAttribute('data-bookId');
       handleRemoveBook(bookId);
-    });
-
-    const checkbox = bookCard.querySelector('.checkbox');
-    checkbox.addEventListener('change', (event) => {
-      const bookId = event.target.getAttribute('data-bookId');
-      handleToggleRead(bookId);
     });
   });
 }
